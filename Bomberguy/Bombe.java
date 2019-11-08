@@ -1,4 +1,4 @@
-
+import GLOOP.*;
 /**
  * Write a description of class Bombe here.
  *
@@ -8,15 +8,16 @@
 public class Bombe
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private GLObjekt[] bomb;
 
     /**
      * Constructor for objects of class Bombe
      */
-    public Bombe()
-    {
-        // initialise instance variables
-        x = 0;
+    public Bombe(int x, int y)
+    {   
+        bomb= new GLObjekt[2];
+        bomb[0]= new GLKugel(x-(x%40),y-(y%40),-8, 8,"weis.jpg" );
+        
     }
 
     /**
@@ -28,6 +29,6 @@ public class Bombe
     public int sampleMethod(int y)
     {
         // put your code here
-        return x + y;
+        return y;
     }
 }

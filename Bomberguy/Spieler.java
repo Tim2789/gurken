@@ -22,6 +22,9 @@ public class Spieler
         spieler[7].setzeDrehung(90,0,0);
     }
        
+    public void setzebombe(){
+        new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
+    }
     
     public void movX(int x){
         for(int i=0; i<8; i++){
