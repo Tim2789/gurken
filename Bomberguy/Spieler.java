@@ -10,24 +10,16 @@ public class Spieler
     private GLKegel spieler;
     public Spieler(int x, int y)
     {
-        spieler = new GLKegel(x,y,0, 20, 20);
+        spieler = new GLKegel(x,y,-10, 10, 10);
         spieler.setzeTextur("grun.jpg");
     }
     
-    public void movUp(){
-        spieler.verschiebe(5,0,0);
+    public void movX(int x){
+        spieler.verschiebe(x,0,0);
     }
     
-    public void movDown(){
-        spieler.verschiebe(-5,0,0);
-    }
-    
-    public void movLeft(){
-        spieler.verschiebe(0,-5,0);
-    }
-    
-    public void movRight(){
-        spieler.verschiebe(0,5,0);
+    public void movY(int y){
+        spieler.verschiebe(0,y,0);
     }
     
     public double getX(){
