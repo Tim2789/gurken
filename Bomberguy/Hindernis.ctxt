@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Hindernis
+comment1.params=pZ\ px\ py
+comment1.target=Hindernis(boolean,\ int,\ int)
+comment2.params=
+comment2.target=int\ gibX()
+comment3.params=
+comment3.target=int\ gibY()
+comment4.params=z
+comment4.target=void\ setTexture(boolean)
+numComments=5
