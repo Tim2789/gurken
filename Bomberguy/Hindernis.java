@@ -18,9 +18,20 @@ public class Hindernis
     public int gibY(){
         return y;
     }
-    public void setTexture(boolean z){
+    private void setTexture(boolean z){
         if(z == true){
             hindernis.setzeTextur("ziegel.jpg");
         }else{hindernis.setzeTextur("steinziegel.jpg");}
+    }
+    public double getDistanceX(Spieler s){
+        double ret = s.getX()-this.gibX();
+        return ret;
+    }
+    public double getDistanceY(Spieler s){
+        double ret = 404;
+        double sp = s.getY();
+        double hi = this.gibY();
+        ret = sp*hi /2;
+        return ret;
     }
 }

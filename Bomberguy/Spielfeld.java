@@ -12,10 +12,12 @@ public class Spielfeld
     private GLLicht licht;
     private GLEntwicklerkamera kamera;
     private List l;
+    private GLHimmel h;
     Spielfeld()
     {
         feld = new GLQuader(0,0,0,15*20,15*20,2);
         feld.setzeTextur("cobble.jpg");
+        h = new GLHimmel("himmel.jpg");
         licht = new GLLicht(0,0,-230);
         kamera = new GLEntwicklerkamera();
         kamera.setzePosition(0,0,-300);
