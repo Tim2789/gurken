@@ -10,7 +10,7 @@ public class Spieler
     private GLObjekt[] spieler ;
     public Spieler(int x, int y)
     {
-        spieler = new GLObjekt[8];
+        spieler = new GLObjekt[9];
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
         spieler[2] = new GLKugel(x,y,-29, 3,"weis.jpg" );
@@ -18,16 +18,21 @@ public class Spieler
         spieler[4] = new GLKugel(x+2,y+2,-29, 1,"schwarz.jpg" );
         spieler[5] = new GLZylinder(x,y,-35,3,5,"grun.jpg");
         spieler[6] = new GLZylinder(x,y,-32,5,1,"grun.jpg");
+        spieler[7] = new GLKegel(x,y+3,-28,1,3, "orange.jpg");
+        spieler[7].setzeDrehung(90,0,0);
     }
        
     
     public void movX(int x){
-        spieler[].verschiebe(x,0,0);
+        for(int i=0; i<8; i++){
+        spieler[i].verschiebe(x,0,0);
+        }
     }
     
     public void movY(int y){
-        spieler[].verschiebe(0,y,0);
-
+        for(int i=0; i<8; i++){
+        spieler[i].verschiebe(0,y,0);
+        }
     }
     
     public double getX(){
