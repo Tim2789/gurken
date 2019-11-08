@@ -19,21 +19,15 @@ public class Spieler
         spieler[5] = new GLZylinder(x,y,-35,3,5,"grun.jpg");
         spieler[6] = new GLZylinder(x,y,-32,5,1,"grun.jpg");
     }
+       
     
-    public void movUp(){
-        spieler[0].verschiebe(5,0,0);
+    public void movX(int x){
+        spieler[].verschiebe(x,0,0);
     }
     
-    public void movDown(){
-        spieler[0].verschiebe(-5,0,0);
-    }
-    
-    public void movLeft(){
-        spieler[0].verschiebe(0,-5,0);
-    }
-    
-    public void movRight(){
-        spieler[0].verschiebe(0,5,0);
+    public void movY(int y){
+        spieler[].verschiebe(0,y,0);
+
     }
     
     public double getX(){

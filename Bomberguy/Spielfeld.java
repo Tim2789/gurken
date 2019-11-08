@@ -18,7 +18,7 @@ public class Spielfeld
         feld.setzeTextur("cobble.jpg");
         licht = new GLLicht(0,0,-230);
         kamera = new GLEntwicklerkamera();
-        kamera.setzePosition(0,0,-250);
+        kamera.setzePosition(0,0,-300);
         l = new List<Hindernis>();
         this.setzeHindernisse();
     }
