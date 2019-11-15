@@ -21,7 +21,7 @@ public class Bombe
     
     public int position(int xy)
     {
-        return(xy-(xy%40)+20);
+        return(xy-(xy%20));
     }
     
     /**

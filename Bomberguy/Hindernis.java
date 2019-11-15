@@ -35,8 +35,8 @@ public class Hindernis
         if(disY > 10 && disY < 30){ret = 4;}
     }*/
         ret = (int)(dX + dY);
-        System.out.println("ret Hindernis:" + ret);
-        //System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
+        //System.out.println("ret Hindernis:" + ret);
+        System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
         return ret;
     }
     public void loesche(){

@@ -81,7 +81,7 @@ public class Spielfeld
             }
             l.next();
         }
-        System.out.println("Naechstes X: "+nearest.gibX()+ "    Y"+ nearest.gibY());
+        //System.out.println("Naechstes X: "+nearest.gibX()+ "    Y"+ nearest.gibY());
         return nearest;
     }
 }
