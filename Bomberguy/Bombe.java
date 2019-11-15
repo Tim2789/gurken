@@ -16,10 +16,14 @@ public class Bombe
     public Bombe(int x, int y)
     {   
         bomb= new GLObjekt[2];
-        bomb[0]= new GLKugel(x-(x%40),y-(y%40),-8, 8,"weis.jpg" );
-        
+        bomb[0]= new GLKugel(position(x),position(y),-8, 8,"weis.jpg");
     }
-
+    
+    public int position(int xy)
+    {
+        return(xy-(xy%40)+20);
+    }
+    
     /**
      * An example of a method - replace this comment with your own
      *
