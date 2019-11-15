@@ -16,12 +16,22 @@ public class Bombe
     public Bombe(int x, int y)
     {   
         bomb= new GLObjekt[2];
-        bomb[0]= new GLKugel(position(x),position(y),-8, 8,"weis.jpg");
+        bomb[0]= new GLQuader(position(x),position(y),-8,8,8,8,"tnt.jpeg");
     }
     
     public int position(int xy)
     {
-        return(xy-(xy%20));
+        if(xy>0){
+            if((xy-(xy%10))% 20 ==0){
+                return((xy-(xy%10)));
+            }
+            return((xy-(xy%10)+10));
+        }else{
+            if((xy-(xy%10))%20 ==0){
+            return((xy-(xy%10)));
+            }
+            return((xy-(xy%10))-10);
+        }
     }
     
     /**

@@ -1,4 +1,4 @@
-import GLOOP.*;
+﻿import GLOOP.*;
 public class Hindernis
 {
     private GLQuader hindernis;
@@ -24,6 +24,7 @@ public class Hindernis
         }else{hindernis.setzeTextur("steinziegel.jpg");}
     }
     public int getDistance(double spX, double spY){
+
         int ret = 0;
         double hx = this.gibX();
         double hy = this.gibY();
