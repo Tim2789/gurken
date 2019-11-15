@@ -10,10 +10,6 @@ public class Spieler
     private GLObjekt[] spieler ;
     public Spieler(int x, int y)
     {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         spieler = new GLObjekt[8];
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
@@ -37,10 +33,6 @@ public class Spieler
         }
     }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     public double getX(){
         return spieler[0].gibX();
     }

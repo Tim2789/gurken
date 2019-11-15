@@ -23,15 +23,23 @@ public class Hindernis
             hindernis.setzeTextur("ziegel.jpg");
         }else{hindernis.setzeTextur("steinziegel.jpg");}
     }
-    public double getDistanceX(Spieler s){
-        double ret = s.getX()-this.gibX();
+    public int getDistance(double spX, double spY){
+        int ret =404;
+        double dX = x / spX;
+        double dY = y / spY;
+      /*  if(disX < -10 && disX > -30){
+        if(disY < -10 && disY > -30){ret = 1;}
+        else if(disY > 10 && disY < 30){ret = 2;}
+    }else if(disX > 10 && disX < 30){
+        if(disY < -10 && disY > -30){ret = 3;}
+        if(disY > 10 && disY < 30){ret = 4;}
+    }*/
+        ret = (int)(dX + dY);
+        System.out.println("ret Hindernis:" + ret);
+        //System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
         return ret;
     }
-    public double getDistanceY(Spieler s){
-        double ret = 404;
-        double sp = s.getY();
-        double hi = this.gibY();
-        ret = sp*hi /2;
-        return ret;
+    public void loesche(){
+        hindernis.loesche();
     }
 }
