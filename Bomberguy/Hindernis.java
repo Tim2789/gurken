@@ -24,19 +24,15 @@ public class Hindernis
         }else{hindernis.setzeTextur("steinziegel.jpg");}
     }
     public int getDistance(double spX, double spY){
-        int ret =404;
-        double dX = x / spX;
-        double dY = y / spY;
-      /*  if(disX < -10 && disX > -30){
-        if(disY < -10 && disY > -30){ret = 1;}
-        else if(disY > 10 && disY < 30){ret = 2;}
-    }else if(disX > 10 && disX < 30){
-        if(disY < -10 && disY > -30){ret = 3;}
-        if(disY > 10 && disY < 30){ret = 4;}
-    }*/
-        ret = (int)(dX + dY);
-        System.out.println("ret Hindernis:" + ret);
-        //System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
+        int ret = 0;
+        double hx = this.gibX();
+        double hy = this.gibY();
+        if(hx + 10 < spX && hx +30 > spX){
+            if(hy +10 >= spY && hy -10 <= spY){ret = 1;}
+        }
+        if(hy +10 < spY && hy + 30 > spY){
+            if(hx +10 >= spX && hx -10 <= spX){ret = 2;}
+        }
         return ret;
     }
     public void loesche(){

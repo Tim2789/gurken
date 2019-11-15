@@ -38,7 +38,7 @@ public class Simulation
                     }
                 }
             }
-            //feld.findNext(spieler1.getX(), spieler1.getY());
+            feld.findNext(spieler1.getX(), spieler1.getY());
            if(this.tstLeftRight(spieler1)){
                 if(spieler1.getY()<=145){
                     if(tastatur.oben()){

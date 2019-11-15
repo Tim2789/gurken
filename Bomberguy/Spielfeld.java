@@ -68,20 +68,39 @@ public class Spielfeld
 
         }
     }
-
-    public Hindernis findNext(double pX, double pY){
+    public Hindernis returnH(int nummer){
         l.toFirst();
-        Hindernis nearest = l.getContent();
-        int smDistance = nearest.getDistance(pX, pY);
-        l.next();
+        for(int i = 1; i<nummer; i++){l.next();}
+        return l.getContent();
+    }
+    
+    public String findNext(double pX, double pY){
+        l.toFirst();
+        String ret = null;
+        
+        int i = 1;
         while(l.hasAccess()){
-            if(smDistance < l.getContent().getDistance(pX,pY)){
-                nearest = l.getContent();
-                smDistance = l.getContent().getDistance(pX, pY);
+            switch(l.getContent().getDistance(pX, pY)){
+                case 1: /*System.out.println(i+". Objekt: 1, d.h. rechts u links blockiert.");*/ ret = ret+"1,"+ this.getDouble(1,l.getContent()); break;//System.out.print("   spX: " + pX+" spY: "+pY);break;
+                case 2: /*System.out.println(i+".Objekt : 2, d.h. oben u unten blockiert.");*/ ret = ret+"2,"+ this.getDouble(2,l.getContent()); break;
+                case 0: ret = "0"; break;
+                default: System.out.println(404); ret = ret +"0"; break;
             }
             l.next();
+            i++;
         }
-        System.out.println("Naechstes X: "+nearest.gibX()+ "    Y"+ nearest.gibY());
-        return nearest;
+        return ret;
+    }
+    
+    public String getDouble(int i, Hindernis h){
+        String ret = null;
+        if(i == 1){
+            ret = Integer.toString((int)h.gibX()+15);
+            ret = ret + ","+Integer.toString((int)h.gibX()+25);
+        }else if(i == 2){
+            ret = Integer.toString((int)h.gibY()+15);
+            ret = ret + ","+Integer.toString((int)h.gibX()+25);
+        }
+        return ret;
     }
 }
