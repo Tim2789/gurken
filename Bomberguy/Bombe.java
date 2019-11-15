@@ -1,4 +1,4 @@
-
+import GLOOP.*;
 /**
  * Write a description of class Bombe here.
  *
@@ -8,17 +8,32 @@
 public class Bombe
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private GLObjekt[] bomb;
 
     /**
      * Constructor for objects of class Bombe
      */
-    public Bombe()
-    {
-        // initialise instance variables
-        x = 0;
+    public Bombe(int x, int y)
+    {   
+        bomb= new GLObjekt[2];
+        bomb[0]= new GLQuader(position(x),position(y),-8,8,8,8,"tnt.jpeg");
     }
-
+    
+    public int position(int xy)
+    {
+        if(xy>0){
+            if((xy-(xy%10))% 20 ==0){
+                return((xy-(xy%10)));
+            }
+            return((xy-(xy%10)+10));
+        }else{
+            if((xy-(xy%10))%20 ==0){
+            return((xy-(xy%10)));
+            }
+            return((xy-(xy%10))-10);
+        }
+    }
+    
     /**
      * An example of a method - replace this comment with your own
      *
@@ -28,6 +43,6 @@ public class Bombe
     public int sampleMethod(int y)
     {
         // put your code here
-        return x + y;
+        return y;
     }
 }

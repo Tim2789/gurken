@@ -1,4 +1,4 @@
-import GLOOP.*;
+﻿import GLOOP.*;
 public class Hindernis
 {
     private GLQuader hindernis;
@@ -18,9 +18,25 @@ public class Hindernis
     public int gibY(){
         return y;
     }
-    public void setTexture(boolean z){
+    private void setTexture(boolean z){
         if(z == true){
             hindernis.setzeTextur("ziegel.jpg");
         }else{hindernis.setzeTextur("steinziegel.jpg");}
+    }
+    public int getDistance(double spX, double spY){
+
+        int ret = 0;
+        double hx = this.gibX();
+        double hy = this.gibY();
+        if(hx + 10 < spX && hx +30 > spX){
+            if(hy +10 >= spY && hy -10 <= spY){ret = 1;}
+        }
+        if(hy +10 < spY && hy + 30 > spY){
+            if(hx +10 >= spX && hx -10 <= spX){ret = 2;}
+        }
+        return ret;
+    }
+    public void loesche(){
+        hindernis.loesche();
     }
 }
