@@ -36,7 +36,7 @@ public class Hindernis
     }*/
         ret = (int)(dX + dY);
         //System.out.println("ret Hindernis:" + ret);
-        System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
+        //System.out.println("SpielerX: "+spX+ "   SpielerY: "+spY+"   HX: "+ this.gibX() + "   HY: " + this.gibY()+ "    ret: "+ret);
         return ret;
     }
     public void loesche(){

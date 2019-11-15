@@ -8,9 +8,11 @@ import GLOOP.*;
 public class Spieler
 {
     private GLObjekt[] spieler ;
+    private int bombemax = 1;
+    private int bomben = 0 ;
     public Spieler(int x, int y)
     {
-
+        
         spieler = new GLObjekt[9];
 
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
@@ -26,10 +28,10 @@ public class Spieler
     }
        
     public void setzebombe(){
+        if(bomben!=bombemax){
         new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
-
     }
-
+    }
     public void movX(int x){
 
         for(int i = 0; i<7; i++){
@@ -50,5 +52,21 @@ public class Spieler
 
     public double getY(){
         return spieler[0].gibY();
+    }
+    
+    public double getbomben(){
+        return (bomben) ;
+    }
+    
+    public double getbombemax(){
+        return bombemax ;
+    }
+    
+    public void erhoehebomben(){
+        bomben++;
+    }
+    
+    public void erhoehebombemax(){
+        bombemax++;
     }
 }
