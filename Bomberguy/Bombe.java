@@ -17,8 +17,6 @@ public class Bombe
     {   
         bomb= new GLObjekt[2];
         bomb[0]= new GLQuader(position(x),position(y),-8,8,8,8,"tnt.jpeg");
-        
-        
     }
     
     public int position(int xy)
@@ -34,7 +32,6 @@ public class Bombe
             }
             return((xy-(xy%10))-10);
         }
-               
     }
     
     /**
