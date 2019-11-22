@@ -11,7 +11,15 @@ public class Simulation
     private Spieler spieler1;
     private GLTastatur tastatur;
     private List<Hindernis> hindernisse;
-
+    private item[] = new item[20];
+    
+    public void itemvergleich(){
+        for(int i=0; i<21;i++){
+        spieler1.aufitem(item[i]);
+        
+        }
+    }
+    
     public Simulation()
     {
         spieler1 = new Spieler(-140, -140);
@@ -22,19 +30,19 @@ public class Simulation
         hindernisse.toFirst();
         this.sim();
     }
-
+    
     public void sim(){
         while(tastatur.alt() != true){
             if(this.tstUpDown(spieler1)){
                 System.out.println("Spieler X: " + spieler1.getX() + "      Y: " +spieler1.getY());
                 if(spieler1.getX()<=145){
                     if(tastatur.links()){
-                        spieler1.movX(1);
+                        spieler1.movX(2);
                     }
                 }
                 if(spieler1.getX()>=-145){
                     if(tastatur.rechts()){
-                        spieler1.movX(-1);
+                        spieler1.movX(-2);
                     }
                 }
             }
@@ -42,12 +50,12 @@ public class Simulation
            if(this.tstLeftRight(spieler1)){
                 if(spieler1.getY()<=145){
                     if(tastatur.oben()){
-                        spieler1.movY(1);
+                        spieler1.movY(2);
                     }
                 }
                 if(spieler1.getY()>=-145){
                     if(tastatur.unten()){
-                        spieler1.movY(-1);
+                        spieler1.movY(-2);
                     }
                 }
             }
@@ -59,6 +67,7 @@ public class Simulation
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
+           spieler1.entferneb();
         }
     }
 

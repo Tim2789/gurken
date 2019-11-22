@@ -9,7 +9,7 @@ public class Bombe
 {
     // instance variables - replace the example below with your own
     private GLObjekt[] bomb;
-
+    private long alter;
     /**
      * Constructor for objects of class Bombe
      */
@@ -17,6 +17,7 @@ public class Bombe
     {   
         bomb= new GLObjekt[2];
         bomb[0]= new GLQuader(position(x),position(y),-8,8,8,8,"tnt.jpeg");
+        alter = System.currentTimeMillis();
     }
     
     public int position(int xy)
@@ -34,6 +35,22 @@ public class Bombe
         }
     }
     
+    public void loescheb (){
+        bomb[0].loesche();
+    }
+    
+    public double getX(){
+        return bomb[0].gibX();
+    }
+
+    public double getY(){
+        return bomb[0].gibY();
+    }
+    
+    
+    public long getalter(){
+        return alter;
+    }
     /**
      * An example of a method - replace this comment with your own
      *

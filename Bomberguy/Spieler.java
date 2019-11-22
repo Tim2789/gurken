@@ -8,13 +8,13 @@ import GLOOP.*;
 public class Spieler
 {
     private GLObjekt[] spieler ;
-    private int bombemax = 1;
+    private int bombemax = 10;
     private int bomben = 0 ;
+    private Bombe[] bombs = new Bombe[10];
     public Spieler(int x, int y)
     {
 
         spieler = new GLObjekt[9];
-
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
         spieler[2] = new GLKugel(x,y,-29, 3,"weis.jpg" );
@@ -27,24 +27,75 @@ public class Spieler
     }
        
     public void setzebombe(){
-        if(bomben!=bombemax){
-        new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
+        if(bomben <bombemax ){
+            if(bomben==0){
+            bombs[bomben] = new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
+            erhoehebomben();
+           }
+        else if(setzbar()){
+                   
+        }else{
+         bombs[bomben] = new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
+         erhoehebomben();
+        }
     }
     }
+    
+    public boolean setzbar(){
+        int i = bomben;
+        for(i = bomben; i>0;i--){
+        if( (int)bombs[i-1].getX() == bombs[i-1].position((int)spieler[0].gibX()) &&
+                  (int)bombs[i-1].getY() == bombs[i-1].position((int)spieler[0].gibY())){
+                      return true;
+                }
+        }
+        return false;
+    }
+    
     public void movX(int x){
 
-        for(int i = 0; i<7; i++){
+        for(int i = 0; i<8; i++){
             spieler[i].verschiebe(x,0,0);
         }
     }
 
     public void movY(int y){
-
-        for(int i = 0; i<7; i++){
+        
+        for(int i = 0; i<8; i++){
             spieler[i].verschiebe(0,y,0);
         }
     }
 
+    public void entferneb(){
+        int i=0;
+        while(i < bomben){
+           
+        if ((System.currentTimeMillis() - bombs[i].getalter()) >=3000){
+        bombs[i].loescheb();
+        bombs[i]= null ;
+            for(int j =i; j<bomben; j++){
+            bombs[j]=bombs[j+1];
+            }
+            if (bomben==bombemax){
+            bombs[bomben]= null;
+            }
+        senkebomben();
+        }
+        else{i++;}
+        }
+    }
+    
+    
+    public void aufitem(item a){
+        if ((int)a.getX == bombs[0].position((int)spieler[0].gibX()) &&
+                  (int)a.getY == bombs[0].position((int)spieler[0].gibY())){
+                      if(bombemax!=10){
+                    erhoehebombemax();
+                }
+                    }
+                  
+    }
+    
     public double getX(){
         return spieler[0].gibX();
     }
@@ -63,6 +114,10 @@ public class Spieler
     
     public void erhoehebomben(){
         bomben++;
+    }
+    
+    public void senkebomben(){
+        bomben--;
     }
     
     public void erhoehebombemax(){
