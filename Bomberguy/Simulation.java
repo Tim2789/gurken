@@ -62,6 +62,9 @@ public class Simulation
             if(tastatur.strg()){
             spieler1.setzebombe();
             }
+            if(tastatur.enter()){
+            
+            }
             try {
                 Thread.sleep(25);
             } catch (InterruptedException ie) {

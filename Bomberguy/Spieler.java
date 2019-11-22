@@ -15,6 +15,7 @@ public class Spieler
     {
 
         spieler = new GLObjekt[9];
+
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
         spieler[2] = new GLKugel(x,y,-29, 3,"weis.jpg" );
