@@ -1,4 +1,4 @@
-﻿import GLOOP.*;
+import GLOOP.*;
 public class Hindernis
 {
     private GLQuader hindernis;
@@ -28,12 +28,29 @@ public class Hindernis
         int ret = 0;
         double hx = this.gibX();
         double hy = this.gibY();
-        if(hx + 10 < spX && hx +30 > spX){
+        /*if(hx + 10 < spX && hx +30 > spX){
             if(hy +10 >= spY && hy -10 <= spY){ret = 1;}
         }
         if(hy +10 < spY && hy + 30 > spY){
             if(hx +10 >= spX && hx -10 <= spX){ret = 2;}
+        }*/
+        if(hy + 10 > spY && hy - 10 < spY){
+            if(hx+10 > spX && hx + 30 < spX){
+                ret = 1;
+            }
+            if(hx -10 < spX && hx - 30 > spX){
+                ret = 2;
+            }
         }
+        if(hx + 10 > spX && hx - 10 < spX){
+            if(hy < spY && hy + 30 > spY){
+                ret = 4;
+            }
+            if(hy - 10 > spY && hy -30 < spY){
+                ret = 3;
+            }
+        } 
+        System.out.println(ret);
         return ret;
     }
     public void loesche(){

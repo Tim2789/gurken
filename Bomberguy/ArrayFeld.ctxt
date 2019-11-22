@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=ArrayFeld
+comment1.params=pX\ pY
+comment1.target=ArrayFeld(double,\ double)
+comment2.params=
+comment2.target=Hindernis\ getContent()
+comment3.params=ph
+comment3.target=void\ setContent(Hindernis)
+comment4.params=
+comment4.target=double[]\ getEdges()
+numComments=5
