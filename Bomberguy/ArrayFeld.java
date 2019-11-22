@@ -21,6 +21,22 @@ public class ArrayFeld
         h = ph;
     }
     
+    public double getEdgeTop(){
+        return edges[3];
+    }
+    
+    public double getEdgeBottom(){
+        return edges[2];
+    }
+    
+    public double getEdgeLeft(){
+        return edges[1];
+    }
+    
+    public double getEdgeRight(){
+        return edges[0];
+    }
+    
     public double[] getEdges(){
         return edges;
     }

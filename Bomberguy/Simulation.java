@@ -11,6 +11,7 @@ public class Simulation
     private Spieler spieler1;
     private GLTastatur tastatur;
     private List<Hindernis> hindernisse;
+    private item[] items = new item[20];
 
     public Simulation()
     {
@@ -18,6 +19,11 @@ public class Simulation
         feld = new Spielfeld();
         tastatur = new GLTastatur();
         this.sim();
+    }
+
+    public void itemvergleich(){
+        spieler1.aufitem(items);  
+
     }
 
     public void sim(){
@@ -28,31 +34,43 @@ public class Simulation
             int[] arraypos = feld.findeSpieler(spieler1.getX(), spieler1.getY());
             System.out.println("ArrayPosX: "+arraypos[0] + "    ArrayPosY: "+arraypos[1]);
             System.out.println("Spieler X: " + spieler1.getX() + "      Y: " +spieler1.getY());
-        
+
             if(tastatur.links()){
-                spieler1.movX(1);
+                if(feld.getMax(4, spX, spY)-4 > spX){
+                    spieler1.movX(1);
+                }
             }
-        
+
             if(tastatur.rechts()){
-                spieler1.movX(-1);
+                if(feld.getMax(3, spX, spY)+4 < spX){
+                    spieler1.movX(-1);
+                }
             }
 
             if(tastatur.oben()){
-                spieler1.movY(1);
+                if(feld.getMax(1, spX, spY)-4 > spY){
+                    spieler1.movY(1);
+                }
             }
 
             if(tastatur.unten()){
-                spieler1.movY(-1);
+                if(feld.getMax(2, spX, spY)+4 < spY){
+                    spieler1.movY(-1);
+                }
             }
 
             if(tastatur.strg()){
                 spieler1.setzebombe();
+            }
+            if(tastatur.enter()){
+
             }
             try {
                 Thread.sleep(25);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
+            spieler1.entferneb();
         }
     }
 

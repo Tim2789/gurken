@@ -1,26 +1,30 @@
 import GLOOP.*;
 /**
- * Write a description of class Bombe here.
+ * Write a description of class item here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Bombe
+public class item
 {
     // instance variables - replace the example below with your own
-    private GLObjekt[] bomb;
-    private long alter;
+    private GLObjekt[] getbomb;
     /**
-     * Constructor for objects of class Bombe
+     * Constructor for objects of class item
      */
-    public Bombe(int x, int y)
+    public item(int x, int y)
     {   
-        bomb= new GLObjekt[2];
-        bomb[0]= new GLQuader(position(x),position(y),-8,8,8,8,"tnt.jpeg");
-        alter = System.currentTimeMillis();
+        getbomb= new GLObjekt[2];
+        getbomb[0]= new GLQuader(randpos(x),randpos(y),-8,8,8,8,"schwarz.jpg");
     }
-    
-    public int position(int xy)
+    public double getRandom(double min, double max)
+    {
+        max = 150;
+        min = -150;
+        double xy = (Math.random()*((max-min)+1))+min;
+        return xy;
+    }
+    public int randpos(int xy)
     {
         if(xy>0){
             if((xy-(xy%10))% 20 ==0){
@@ -35,21 +39,12 @@ public class Bombe
         }
     }
     
-    public void loescheb (){
-        bomb[0].loesche();
-    }
-    
     public double getX(){
-        return bomb[0].gibX();
+        return getbomb[0].gibX();
     }
-
+    
     public double getY(){
-        return bomb[0].gibY();
-    }
-    
-    
-    public long getalter(){
-        return alter;
+        return getbomb[0].gibY();
     }
     /**
      * An example of a method - replace this comment with your own
