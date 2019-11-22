@@ -13,7 +13,7 @@ public class Spieler
     public Spieler(int x, int y)
     {
 
-        spieler = new GLObjekt[9];
+        spieler = new GLObjekt[8];
 
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
