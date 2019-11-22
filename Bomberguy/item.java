@@ -38,9 +38,11 @@ public class item
             return((xy-(xy%10))-10);
         }
     }
+    
     public double getX(){
         return getbomb[0].gibX();
     }
+    
     public double getY(){
         return getbomb[0].gibY();
     }

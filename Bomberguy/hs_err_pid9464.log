@@ -1,0 +1,61 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x00007ffe8ba7f148, pid=9464, tid=11084
+#
+# JRE version: OpenJDK Runtime Environment (11.0.2+9) (build 11.0.2+9)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.2+9, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [ig9icd64.dll+0x87f148]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -ea -agentlib:jdwp=transport=dt_shmem,address=javadebug -Dfile.encoding=UTF-8 bluej.runtime.ExecServer UTF-8
+
+Host: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 17763 (10.0.17763.475)
+Time: Fri Nov 22 10:51:25 2019 Mitteleuropäische Zeit elapsed time: 669 seconds (0d 0h 11m 9s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000254c7086000):  JavaThread "AWT-EventQueue-0" [_thread_in_native, id=11084, stack(0x0000008ecf100000,0x0000008ecf200000)]
+
+Stack: [0x0000008ecf100000,0x0000008ecf200000],  sp=0x0000008ecf101e68,  free space=7k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [ig9icd64.dll+0x87f148]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 1644  jogamp.opengl.gl4.GL4bcImpl.dispatch_glLoadIdentity1(J)V (0 bytes) @ 0x00000254af64cefb [0x00000254af64cec0+0x000000000000003b]
+J 2028 c2 GLOOP.GLObjekt.executeGL(Ljavax/media/opengl/GL2;Ljavax/media/opengl/glu/GLU;LGLOOP/GLRenderer;)V (454 bytes) @ 0x00000254af689b54 [0x00000254af689aa0+0x00000000000000b4]
+J 2054 c2 GLOOP.GLRenderer.renderBild(Z)V (407 bytes) @ 0x00000254af6992a0 [0x00000254af6988a0+0x0000000000000a00]
+J 2113 c2 GLOOP.GLRenderer.display(Ljavax/media/opengl/GLAutoDrawable;)V (696 bytes) @ 0x00000254af6c5f6c [0x00000254af6c5aa0+0x00000000000004cc]
+J 2120 c2 jogamp.opengl.GLDrawableHelper.invokeGLImpl(Ljavax/media/opengl/GLDrawable;Ljavax/media/opengl/GLContext;Ljava/lang/Runnable;Ljava/lang/Runnable;Ljavax/media/opengl/GLAutoDrawable;)V (425 bytes) @ 0x00000254af6d099c [0x00000254af6d0380+0x000000000000061c]
+J 2122 c2 jogamp.opengl.GLDrawableHelper.invokeGL(Ljavax/media/opengl/GLDrawable;Ljavax/media/opengl/GLContext;Ljava/lang/Runnable;Ljava/lang/Runnable;)V (89 bytes) @ 0x00000254af6d6510 [0x00000254af6d64c0+0x0000000000000050]
+J 1902 c1 javax.media.opengl.awt.GLCanvas$9.run()V (117 bytes) @ 0x00000254a840ea9c [0x00000254a840e800+0x000000000000029c]
+j  java.awt.event.InvocationEvent.dispatch()V+11 java.desktop@11.0.2
+J 2142 c2 java.awt.EventQueue$4.run()Ljava/lang/Object; java.desktop@11.0.2 (5 bytes) @ 0x00000254af6f0b28 [0x00000254af6f0a40+0x00000000000000e8]
+v  ~StubRoutines::call_stub
+J 1790  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object; java.base@11.0.2 (0 bytes) @ 0x00000254af65bfa6 [0x00000254af65bf40+0x0000000000000066]
+J 2135 c2 java.awt.EventQueue.dispatchEvent(Ljava/awt/AWTEvent;)V java.desktop@11.0.2 (80 bytes) @ 0x00000254af6e9bd8 [0x00000254af6e9860+0x0000000000000378]
+J 2153 c2 java.awt.EventDispatchThread.pumpOneEventForFilters(I)V java.desktop@11.0.2 (113 bytes) @ 0x00000254af6fb324 [0x00000254af6fb140+0x00000000000001e4]
+J 2175% c2 java.awt.EventDispatchThread.pumpEventsForFilter(ILjava/awt/Conditional;Ljava/awt/EventFilter;)V java.desktop@11.0.2 (47 bytes) @ 0x00000254af5e299c [0x00000254af5e2860+0x000000000000013c]
+j  java.awt.EventDispatchThread.pumpEventsForHierarchy(ILjava/awt/Conditional;Ljava/awt/Component;)V+11 java.desktop@11.0.2
+j  java.awt.EventDispatchThread.pumpEvents(ILjava/awt/Conditional;)V+4 java.desktop@11.0.2
+j  java.awt.EventDispatchThread.pumpEvents(Ljava/awt/Conditional;)V+3 java.desktop@11.0.2
+j  java.awt.EventDispatchThread.run()V+9 java.desktop@11.0.2
+v  ~StubRoutines::call_stub
+
+siginfo: EXCEPTION_STACK_OVERFLOW (0xc00000fd), ExceptionInformation=0x0000000000000001 0x0000008ecf100000 
+
+
+Register to memory mapping:
+
+RIP=0x00007ffe8ba7f148 ig9icd64.dll
+RAX=

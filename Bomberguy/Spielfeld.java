@@ -13,6 +13,7 @@ public class Spielfeld
     private GLKamera kamera;
     private List<Hindernis> l, lZ;
     private GLHimmel h;
+    private ArrayFeld[][] a;
     Spielfeld()
     {
         feld = new GLQuader(0,0,0,15*20,15*20,2);
@@ -21,6 +22,7 @@ public class Spielfeld
         licht = new GLLicht(0,0,-230);
         kamera = new GLKamera();
         kamera.setzePosition(0,0,-300);
+        a = new ArrayFeld[15][15];
         l = new List<Hindernis>();
         lZ = new List<Hindernis>();
         this.setzeHindernisse();
@@ -28,78 +30,73 @@ public class Spielfeld
     }
 
     public void setzeHindernisse(){
-        for(int i = 0; i != 7; i++){
-            for(int k = 0; k != 7; k++){
-                Hindernis h = new Hindernis(false, (-120+(k*40)), (-120+(i*40)));
-                l.append(h);
-            }
-        }
-    }
-
-    public void setzeHindernisseZ(){
         for(int i = 0; i != 15; i++){
             for(int k = 0; k != 15; k++){
-                Hindernis h = new Hindernis(true, (-140+(k*20)), (-140+(i*20)));
-                lZ.append(h);
+                a[i][k] = new ArrayFeld(-140 + i*20, -140 + k*20);
+                if(k % 2 == 1 && i % 2 == 1){
+                    a[i][k].setContent(new Hindernis(false,-140 + i*20,-140 + k*20));
+                }
             }
         }
-    }
-
-    public List<Hindernis> gibHindernisse(){
-        return l;
-    }
-
-    public List<Hindernis> gibHindernisseZ(){
-        return lZ;
-    }
-
-    public void loescheSpawn(Spieler spi){
-        lZ.toFirst();
-        double spX = spi.getX();
-        double spY = spi.getY();
-        Hindernis h = null;
-        while(lZ.hasAccess()){
-            h = lZ.getContent();
-            if(h.gibX() == spX && h.gibY() == spY){h.loesche();}
-            else if(h.gibX() + 20 == spX && h.gibY() +20 == spY){h.loesche();}
-            else if(h.gibX() - 20 == spX && h.gibY() -20 == spY){h.loesche();}
-            else if(h.gibX() + 20 == spX && h.gibY() -20 == spY){h.loesche();}
-            else if(h.gibX() - 20 == spX && h.gibY() +20 == spY){h.loesche();}
-
-        }
-    }
-    public Hindernis returnH(int nummer){
-        l.toFirst();
-        for(int i = 1; i<nummer; i++){l.next();}
-        return l.getContent();
     }
     
-    public String findNext(double pX, double pY){
-        l.toFirst();
-        String ret = null;
-        
-        int i = 1;
-        while(l.hasAccess()){
-            switch(l.getContent().getDistance(pX, pY)){
-                case 1: /*System.out.println(i+". Objekt: 1, d.h. rechts u links blockiert.");*/ ret = ret+"1,"+ this.getDouble(1,l.getContent()); break;//System.out.print("   spX: " + pX+" spY: "+pY);break;
-                case 2: /*System.out.println(i+".Objekt : 2, d.h. oben u unten blockiert.");*/ ret = ret+"2,"+ this.getDouble(2,l.getContent()); break;
-                case 0: ret = "0"; break;
-                default: System.out.println(404); ret = ret +"0"; break;
+    public int[] findeSpieler(double pX, double pY){
+        int feldX = 0; 
+        int feldY = 0;
+        for(feldX = 0; feldX != 15; feldX++){
+            double[] edges = a[feldX][0].getEdges();
+            if(pX > edges[0] && pX < edges[1]){
+                break;
             }
-            l.next();
-            i++;
         }
+        for(feldY = 0; feldY != 15; feldY++){
+            double[] edges = a[0][feldY].getEdges();
+            if(pY > edges[2] && pY < edges[3]){
+                break;
+            }
+        }
+        int[] ret = {feldX, feldY};
         return ret;
     }
     
-    public String getDouble(int i, Hindernis h){
-        String ret = null;
-        if(i == 1){
-            ret = Integer.toString((int)h.gibX()+15);
-            ret = ret + ","+Integer.toString((int)h.gibX()+25);
-        }else if(i == 2){
-            ret = Integer.toString((int)h.gibY()+15);
-            ret = ret + ","+Integer.toString((int)h.gibX()+25);
+    public double getMax(int d, double pX, double pY){
+        int[] posSpieler = findeSpieler(pX, pY);
+        double ret = 0;
+        
+        switch(d){
+            case 1: //up
+            if(posSpieler[1] > 0 && posSpieler[1] < 13)
+                if(a[posSpieler[0]][posSpieler[1]+1].getContent() != null){
+                    double[] edges = a[posSpieler[0]][posSpieler[1]+1].getEdges();
+                    ret = edges[2];
+                }
+                else ret = 145;
+                else ret = 145;
+                break;
+            case 2: //down
+            if(posSpieler[1] > 0 && posSpieler[1] < 13)
+                if(a[posSpieler[0]][posSpieler[1]-1].getContent() != null){
+                    double[] edges = a[posSpieler[0]][posSpieler[1]-1].getEdges();
+                    ret = edges[3];
+                }
+                else ret = -145;
+                else ret = -145;
+            case 3: //right
+            if(posSpieler[0] > 0 && posSpieler[0] < 13)
+                if(a[posSpieler[0]-1][posSpieler[1]].getContent() != null){
+                    double[] edges = a[posSpieler[0]-1][posSpieler[1]].getEdges();
+                    ret = edges[1];
+                }
+                else ret = -145;
+                else ret = -145;
+            case 4:
+            if(posSpieler[0] != 0 && posSpieler[0] != 13)
+                if(a[posSpieler[0]+1][posSpieler[1]].getContent() != null){
+                    double[] edges = a[posSpieler[0]+1][posSpieler[1]].getEdges();
+                    ret = edges[0];
+                }
+                else ret = 145;
+                else ret = 145;
         }
         return ret;
     }

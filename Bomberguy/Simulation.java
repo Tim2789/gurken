@@ -11,48 +11,50 @@ public class Simulation
     private Spieler spieler1;
     private GLTastatur tastatur;
     private List<Hindernis> hindernisse;
-
+    private item[] items = new item[20];
+    
+    
     public Simulation()
     {
         spieler1 = new Spieler(-140, -140);
         feld = new Spielfeld();
-        feld.loescheSpawn(spieler1);
         tastatur = new GLTastatur();
-        List<Hindernis> hindernisse = feld.gibHindernisse();
-        hindernisse.toFirst();
         this.sim();
     }
-
+    
+     public void itemvergleich(){
+        spieler1.aufitem(items);  
+      
+    }
+    
     public void sim(){
         while(tastatur.alt() != true){
-            if(this.tstUpDown(spieler1)){
-                System.out.println("Spieler X: " + spieler1.getX() + "      Y: " +spieler1.getY());
-                if(spieler1.getX()<=145){
-                    if(tastatur.links()){
-                        spieler1.movX(1);
-                    }
-                }
-                if(spieler1.getX()>=-145){
-                    if(tastatur.rechts()){
-                        spieler1.movX(-1);
-                    }
-                }
+
+            double spX = spieler1.getX();
+            double spY = spieler1.getY();
+            //if(this.tstUpDown(spieler1)){
+            int[] arraypos = feld.findeSpieler(spieler1.getX(), spieler1.getY());
+            System.out.println("ArrayPosX: "+arraypos[0] + "    ArrayPosY: "+arraypos[1]);
+            System.out.println("Spieler X: " + spieler1.getX() + "      Y: " +spieler1.getY());
+        
+            if(tastatur.links()){
+                spieler1.movX(1);
             }
-            feld.findNext(spieler1.getX(), spieler1.getY());
-           if(this.tstLeftRight(spieler1)){
-                if(spieler1.getY()<=145){
-                    if(tastatur.oben()){
-                        spieler1.movY(1);
-                    }
-                }
-                if(spieler1.getY()>=-145){
-                    if(tastatur.unten()){
-                        spieler1.movY(-1);
-                    }
-                }
+        
+            if(tastatur.rechts()){
+                spieler1.movX(-1);
             }
+
+            if(tastatur.oben()){
+                spieler1.movY(1);
+            }
+
+            if(tastatur.unten()){
+                spieler1.movY(-1);
+            }
+
             if(tastatur.strg()){
-            spieler1.setzebombe();
+                spieler1.setzebombe();
             }
             if(tastatur.enter()){
             
@@ -62,6 +64,7 @@ public class Simulation
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
+           spieler1.entferneb();
         }
     }
 
