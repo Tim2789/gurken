@@ -87,14 +87,15 @@ public class Spieler
     }
     
     
-    public void aufitem(item a){
-        if ((int)a.getX == bombs[0].position((int)spieler[0].gibX()) &&
-                  (int)a.getY == bombs[0].position((int)spieler[0].gibY())){
+    public void aufitem(item[] a){
+        for (int i= 0 ; i<21 ;i++){
+            if ((int)a[i].getX() == bombs[0].position((int)spieler[0].gibX()) &&
+                  (int)a[i].getY() == bombs[0].position((int)spieler[0].gibY())){
                       if(bombemax!=10){
-                    erhoehebombemax();
+                          erhoehebombemax();
                 }
                     }
-                  
+                }  
     }
     
     public double getX(){

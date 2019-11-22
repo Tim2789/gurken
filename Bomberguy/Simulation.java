@@ -11,14 +11,8 @@ public class Simulation
     private Spieler spieler1;
     private GLTastatur tastatur;
     private List<Hindernis> hindernisse;
-    private item[] = new item[20];
+    private item[] items = new item[20];
     
-    public void itemvergleich(){
-        for(int i=0; i<21;i++){
-        spieler1.aufitem(item[i]);
-        
-        }
-    }
     
     public Simulation()
     {
@@ -26,6 +20,11 @@ public class Simulation
         feld = new Spielfeld();
         tastatur = new GLTastatur();
         this.sim();
+    }
+    
+     public void itemvergleich(){
+        spieler1.aufitem(items);  
+      
     }
     
     public void sim(){
