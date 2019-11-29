@@ -11,7 +11,7 @@ public class Spieler
     private int bombemax = 10;
     private int bomben = 0 ;
     private Bombe[] bombs = new Bombe[10];
-    public Spieler(int x, int y)
+    public Spieler(String farbe, int x, int y)
     {
 
         spieler = new GLObjekt[9];
@@ -21,8 +21,8 @@ public class Spieler
         spieler[2] = new GLKugel(x,y,-29, 3,"weis.jpg" );
         spieler[3] = new GLKugel(x-2,y+2,-29, 1,"schwarz.jpg" );
         spieler[4] = new GLKugel(x+2,y+2,-29, 1,"schwarz.jpg" );
-        spieler[5] = new GLZylinder(x,y,-35,3,5,"grun.jpg");
-        spieler[6] = new GLZylinder(x,y,-32,5,1,"grun.jpg");
+        spieler[5] = new GLZylinder(x,y,-35,3,5,farbe);
+        spieler[6] = new GLZylinder(x,y,-32,5,1,farbe);
         spieler[7] = new GLKegel(x,y+3,-28,1,3, "orange.jpg");
         spieler[7].setzeDrehung(90,0,0);
     }
