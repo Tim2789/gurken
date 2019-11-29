@@ -26,7 +26,7 @@ public class Spielfeld
         l = new List<Hindernis>();
         lZ = new List<Hindernis>();
         this.setzeHindernisse();
-        this.setzeHindernissezerstörbar();
+        //this.setzeHindernissezerstörbar();
     }
 
     public void setzeHindernisse(){
