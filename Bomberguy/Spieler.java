@@ -12,7 +12,7 @@ public class Spieler
     private int bomben = 0 ;
     private Bombe[] bombs = new Bombe[10];
     public Spieler(String farbe, int x, int y)
-    {
+
 
         spieler = new GLObjekt[9];
 

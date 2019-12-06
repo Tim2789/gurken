@@ -16,6 +16,7 @@ public class Simulation
     private boolean online, host;
     private BomberServer bs;
     private BomberClient bc;
+
     public Simulation()
     {
         feld = new Spielfeld();
@@ -37,6 +38,7 @@ public class Simulation
             spieler2 = new Spieler("rot.jpg",140, 140);
         }
         while(tastatur.esc() != true){
+
             double spX = spieler1.getX();
             double spY = spieler1.getY();
             double sp2X = spieler2.getX();
@@ -96,6 +98,9 @@ public class Simulation
 
             if(tastatur.enter()){
             }
+            if(tastatur.enter()){
+            
+            }
             try {
                 Thread.sleep(25);
             } catch (InterruptedException ie) {
@@ -103,7 +108,6 @@ public class Simulation
             }
             spieler1.entferneb();
             spieler2.entferneb();
-            
         }
     }
 
