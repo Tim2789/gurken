@@ -22,8 +22,8 @@ public class Simulation
         tastatur = new GLTastatur();
         maus = new GLMaus();
         s = new Sys();
-        this.menu();
-        //this.sim();
+        //this.menu();
+        this.sim();
     }
 
     public void itemvergleich(){
@@ -187,7 +187,6 @@ public class Simulation
         while(tastatur.enter() != true){
             int mausX = maus.gibX();
             int mausY = maus.gibY();
-            System.out.println("mausX: "+mausX+"    mausY:" +mausY);
             //------------------------IP---------------------------------------
             if(maus.gedruecktLinks() == true){
                 if(mausX > 540 && mausX < 630 && mausY > 300 && mausY < 430){
