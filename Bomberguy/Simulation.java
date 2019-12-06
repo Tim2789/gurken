@@ -105,13 +105,13 @@ public class Simulation
             }
             spieler1.entferneb();
             spieler1.ablaufExplo();
+            spieler2.entferneb();
+            spieler2.ablaufExplo();
             try {
                 Thread.currentThread().sleep(25);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
-            spieler1.entferneb();
-            spieler2.entferneb();
         }
     }
 

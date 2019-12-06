@@ -8,16 +8,16 @@ import GLOOP.*;
 public class Spieler
 {
     private GLObjekt[] spieler ;
-    private int bombemax = 5;
+    private int bombemax = 3;
     private int bomben = 0 ;
-    private Bombe[] bombs = new Bombe[7];
+    private Bombe[] bombs = new Bombe[5];
     private Explosion[] ep;
     private int Explosionlvl =4;
     
-    public Spieler(String farbe,int x, int y)
+    public Spieler(String farbe ,int x, int y)
     {
-        ep= new Explosion[5];
-        for(int i=0; i<5;++i){
+        ep= new Explosion[3];
+        for(int i=0; i<3;++i){
         ep[i]= new Explosion();
         }
         spieler = new GLObjekt[9];
@@ -103,7 +103,7 @@ public class Spieler
     public void ablaufExplo(){
         long temp ;
         long zeit ;
-        for(int i =0;i<5;i++){
+        for(int i =0;i<3;i++){
             zeit = (System.currentTimeMillis() - ep[i].getalter());
             for(temp =Explosionlvl; temp>0; --temp){
                 if(ep[i].getalter() !=0 && zeit >=200*temp){
