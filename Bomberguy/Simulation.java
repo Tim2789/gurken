@@ -8,11 +8,10 @@ import GLOOP.*;
 public class Simulation
 {
     private Spielfeld feld;
-    private Spieler spieler1;
+    public Spieler spieler1;
     private GLTastatur tastatur;
     private List<Hindernis> hindernisse;
     private item[] items = new item[20];
-    
     
     public Simulation()
     {
@@ -59,12 +58,13 @@ public class Simulation
             if(tastatur.enter()){
             
             }
+            spieler1.entferneb();
+            spieler1.ablaufExplo();
             try {
-                Thread.sleep(25);
+                Thread.currentThread().sleep(25);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
-           spieler1.entferneb();
         }
     }
 
