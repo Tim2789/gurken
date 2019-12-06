@@ -1,6 +1,6 @@
 #BlueJ package file
-dependency1.from=Spielfeld
-dependency1.to=List
+dependency1.from=ArrayFeld
+dependency1.to=Hindernis
 dependency1.type=UsesDependency
 dependency10.from=Spieler
 dependency10.to=Bombe
@@ -119,3 +119,4 @@ target9.type=ClassTarget
 target9.width=80
 target9.x=10
 target9.y=130
+

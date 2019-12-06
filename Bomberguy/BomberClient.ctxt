@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=BomberClient
+comment0.text=\r\n\ @author\ \r\n\ @version\ \r\n
+comment1.params=pServerIP
+comment1.target=BomberClient(java.lang.String)
+comment2.params=pNachricht
+comment2.target=void\ send(java.lang.String)
+comment3.params=pMessage
+comment3.target=void\ processMessage(java.lang.String)
+comment4.params=
+comment4.target=int\ getMessage()
+numComments=5
