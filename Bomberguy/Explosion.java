@@ -47,6 +47,7 @@ public class Explosion
         for (int i =0; i<4;++i){
         interagiert[i]= true;
         }
+
         x=xp;
         y=yp;
         explo[0].setzePosition(xp,yp,z);
@@ -83,5 +84,9 @@ public class Explosion
     public void setinteragiertfalse(int index){
     interagiert[index-1]=false;
     }
-    
+
+    public GLObjekt[] getExplo(){
+        return explo;
+    }
+
 }

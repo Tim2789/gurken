@@ -11,4 +11,6 @@ comment4.params=spX\ spY
 comment4.target=int[]\ findeSpieler(double,\ double)
 comment5.params=d\ pX\ pY
 comment5.target=double\ getMax(int,\ double,\ double)
-numComments=6
+comment6.params=s1\ s2
+comment6.target=void\ testExplosion(Spieler,\ Spieler)
+numComments=7

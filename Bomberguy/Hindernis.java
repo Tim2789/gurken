@@ -49,4 +49,7 @@ public class Hindernis
     public void loesche(){
         hindernis.loesche();
     }
+    public boolean destroyable(){
+        return zerstörbar;
+    }
 }
