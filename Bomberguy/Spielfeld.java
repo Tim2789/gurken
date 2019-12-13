@@ -130,7 +130,7 @@ public class Spielfeld
         Explosion[] explo2 = s2.getExplo();
         for(int i = 0; i != 3; i++){
             GLObjekt[] kugeln = explo1[i].getExplo();
-            for(int k = 1; k != 5; k++){
+            for(int k = 0; k != 5; k++){
                 int[] pos = this.findeSpieler(kugeln[k].gibX(), kugeln[k].gibY());
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo1[i].setinteragiertfalse(k);

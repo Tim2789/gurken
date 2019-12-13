@@ -13,7 +13,7 @@ public class Explosion
     private double y=500;
     private double z =-8;
     private long alter = 0;
-    private boolean interagiert[]= {true,true,true,true} ;
+    private boolean interagiert[]= {true,true,true,true,true} ;
     /**
      * Konstruktor für Objekte der Klasse Explosion
      */
@@ -44,18 +44,17 @@ public class Explosion
     
     
     public void verschiebExplo(double xp, double yp){
-        for (int i =0; i<4;++i){
+        for (int i =0; i<5;++i){
         interagiert[i]= true;
         }
 
         x=xp;
         y=yp;
         explo[0].setzePosition(xp,yp,z);
-        explo[1].setzePosition(xp+20,yp,z);
-        explo[2].setzePosition(xp,yp+20,z);
-        explo[3].setzePosition(xp-20,yp,z);
-        explo[4].setzePosition(xp,yp-20,z);    
-         
+        richtung(1,xp+20,yp);
+        richtung(2,xp,yp+20);
+        richtung(3,xp-20,yp);
+        richtung(4,xp,yp-20);   
     }
     
     public void step(int j){
@@ -68,7 +67,7 @@ public class Explosion
         }
     
     public void richtung (int index, double x ,double y){
-        if(interagiert[index-1]){
+        if(interagiert[index] && (x<150) && (x>-150) && (y<150) && (y>-150) ){
         explo[index].setzePosition(x,y,z);
         }else{
         explo[index].setzePosition(500,500,z);
@@ -82,7 +81,7 @@ public class Explosion
     }
     
     public void setinteragiertfalse(int index){
-    interagiert[index-1]=false;
+    interagiert[index]=false;
     }
 
     public GLObjekt[] getExplo(){
