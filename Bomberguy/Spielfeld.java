@@ -141,6 +141,7 @@ public class Spielfeld
                 }
                 if(this.findeSpieler(s1.getX(), s1.getY()) == pos){
                     s1.setAlive(false);
+                    System.out.print(s1.getAlive());
                 }
                 if(this.findeSpieler(s2.getX(), s2.getY()) == pos){
                     s2.setAlive(false);

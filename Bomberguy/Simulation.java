@@ -39,14 +39,8 @@ public class Simulation
             spieler1 = new Spieler("grun.jpg",-140, -140);
             spieler2 = new Spieler("rot.jpg",140, 140);
         }
-        if(!(spieler1.getAlive()) || !(spieler2.getAlive())){
-            spieler1.setXY(-140, -140);
-            spieler1.setAlive(true);
-            spieler2.setXY(140, 140);
-            spieler2.setAlive(true);
-        }
         while(tastatur.esc() != true){
-
+            
             double spX = spieler1.getX();
             double spY = spieler1.getY();
             double sp2X = spieler2.getX();
@@ -109,10 +103,18 @@ public class Simulation
             if(tastatur.enter()){
             
             }
+            
+            if(!(spieler1.getAlive()) ){
+                spieler1.setXY(-140, -140);
+                spieler1.setAlive(true);
+                spieler2.setXY(140, 140);
+                spieler2.setAlive(true);
+            }
             spieler1.entferneb();
             spieler1.ablaufExplo();
             spieler2.entferneb();
             spieler2.ablaufExplo();
+            feld.testExplosion(spieler1,spieler2);
             try {
                 Thread.currentThread().sleep(25);
             } catch (InterruptedException ie) {
