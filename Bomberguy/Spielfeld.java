@@ -26,7 +26,7 @@ public class Spielfeld
         l = new List<Hindernis>();
         lZ = new List<Hindernis>();
         this.setzeHindernisse();
-        //this.setzeHindernissezerstörbar();
+        this.setzeHindernissezerstörbar();
     }
 
     public void setzeHindernisse(){
@@ -76,7 +76,7 @@ public class Spielfeld
     public double getMax(int d, double pX, double pY){
         int[] posSpieler = findeSpieler(pX, pY);
         double ret = 0;
-        System.out.println("posAX: "+posSpieler[0] + "    posAY: "+ posSpieler[1]);
+        //System.out.println("posAX: "+posSpieler[0] + "    posAY: "+ posSpieler[1]);
         switch(d){
             case 1: //up
             if(posSpieler[1] < 14){
@@ -126,7 +126,6 @@ public class Spielfeld
     }
     
     public void testExplosion(Spieler s1, Spieler s2){
-        int[] posS = this.findeSpieler(s1.getX(), s1.getY());
         Explosion[] explo1 = s1.getExplo();
         Explosion[] explo2 = s2.getExplo();
         for(int i = 0; i != 3; i++){
@@ -137,13 +136,16 @@ public class Spielfeld
                     explo1[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
                         a[pos[0]][pos[1]].getContent().loesche();
+                        a[pos[0]][pos[1]].setContent(null);
                     }
                 }
-                if(this.findeSpieler(s1.getX(), s1.getY()) == pos){
+                int[] posS = this.findeSpieler(s1.getX(), s1.getY());
+                if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s1.setAlive(false);
                     System.out.print(s1.getAlive());
                 }
-                if(this.findeSpieler(s2.getX(), s2.getY()) == pos){
+                posS = this.findeSpieler(s2.getX(), s2.getY());
+                if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s2.setAlive(false);
                 }
             }
@@ -157,6 +159,7 @@ public class Spielfeld
                     explo2[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
                         a[pos[0]][pos[1]].getContent().loesche();
+                        a[pos[0]][pos[1]].setContent(null);
                     }
                 }
                 if(this.findeSpieler(s1.getX(), s1.getY()) == pos){
