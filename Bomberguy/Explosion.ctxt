@@ -16,4 +16,6 @@ comment6.params=j
 comment6.target=void\ step(int)
 comment7.params=
 comment7.target=void\ hide()
-numComments=8
+comment8.params=
+comment8.target=GLOOP.GLObjekt[]\ getExplo()
+numComments=9

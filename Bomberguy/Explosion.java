@@ -62,10 +62,13 @@ public class Explosion
         explo[4].setzePosition(x,(y-lauf*j),z);
         } 
     
-    
     public void hide(){
         x=500;
         y=500;
         verschiebExplo(x,y);
+    }
+    
+    public GLObjekt[] getExplo(){
+        return explo;
     }
 }

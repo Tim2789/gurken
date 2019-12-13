@@ -99,7 +99,9 @@ public class Spieler
             }
     }
     
-    
+    public Explosion[] getExplo(){
+        return ep;
+    }
     public void ablaufExplo(){
         long temp ;
         long zeit ;
