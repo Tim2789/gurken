@@ -13,6 +13,7 @@ public class Explosion
     private double y=500;
     private double z =-8;
     private long alter = 0;
+    private boolean interagiert[]= {true,true,true,true} ;
     /**
      * Konstruktor für Objekte der Klasse Explosion
      */
@@ -43,6 +44,9 @@ public class Explosion
     
     
     public void verschiebExplo(double xp, double yp){
+        for (int i =0; i<4;++i){
+        interagiert[i]= true;
+        }
         x=xp;
         y=yp;
         explo[0].setzePosition(xp,yp,z);
@@ -56,16 +60,28 @@ public class Explosion
     public void step(int j){
         int lauf =20;
         explo[0].setzePosition(500,500,z);
-        explo[1].setzePosition((x+lauf*j),y,z);
-        explo[2].setzePosition(x,(y+lauf*j),z);
-        explo[3].setzePosition((x-lauf*j),y,z);
-        explo[4].setzePosition(x,(y-lauf*j),z);
-        } 
+        richtung(1,(x+lauf*j),y);
+        richtung(2,x,(y+lauf*j));
+        richtung(3,(x-lauf*j),y);
+        richtung(4,x,(y-lauf*j));
+        }
     
-    
+    public void richtung (int index, double x ,double y){
+        if(interagiert[index-1]){
+        explo[index].setzePosition(x,y,z);
+        }else{
+        explo[index].setzePosition(500,500,z);
+        }
+    }
+        
     public void hide(){
         x=500;
         y=500;
         verschiebExplo(x,y);
     }
+    
+    public void setinteragiertfalse(int index){
+    interagiert[index-1]=false;
+    }
+    
 }

@@ -39,6 +39,12 @@ public class Simulation
             spieler1 = new Spieler("grun.jpg",-140, -140);
             spieler2 = new Spieler("rot.jpg",140, 140);
         }
+        if(!(spieler1.getAlive()) || !(spieler2.getAlive())){
+            spieler1.setXY(-140, -140);
+            spieler1.setAlive(true);
+            spieler2.setXY(140, 140);
+            spieler2.setAlive(true);
+        }
         while(tastatur.esc() != true){
 
             double spX = spieler1.getX();

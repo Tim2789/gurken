@@ -13,6 +13,7 @@ public class Spieler
     private Bombe[] bombs = new Bombe[5];
     private Explosion[] ep;
     private int Explosionlvl =4;
+    private boolean alive =true;
     
     public Spieler(String farbe ,int x, int y)
     {
@@ -127,6 +128,23 @@ public class Spieler
                 }
                     }
                 }  
+    }
+    
+    public void setXY(int x , int y){
+    float temp ; 
+    for(int i = 0; i<8; i++){
+            temp=spieler[i].gibZ();
+            spieler[i].setzePosition(x,y,temp);
+        }
+    
+    }
+    
+    public void setAlive (boolean b){
+    alive= b ;
+    }
+    
+    public boolean getAlive(){
+    return alive;
     }
     
     public double getX(){
