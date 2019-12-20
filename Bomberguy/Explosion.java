@@ -9,8 +9,8 @@ public class Explosion
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private GLObjekt[] explo ;
-    private double x =500;
-    private double y=500;
+    private double x =0;
+    private double y=0;
     private double z =-8;
     private long alter = 0;
     private boolean interagiert[]= {true,true,true,true,true} ;
@@ -21,7 +21,7 @@ public class Explosion
     {
      
      explo = new GLObjekt[5];   
-     int lauf =20;
+     int lauf =40;
      
         explo[0]= new GLKugel(x,y,z,8,"gelb.jpg");
         explo[1]= new GLKugel(x+lauf,y,z,8,"gelb.jpg");
@@ -59,7 +59,7 @@ public class Explosion
     
     public void step(int j){
         int lauf =20;
-        explo[0].setzePosition(500,500,z);
+        explo[0].setzePosition(0,0,z);
         richtung(1,(x+lauf*j),y);
         richtung(2,x,(y+lauf*j));
         richtung(3,(x-lauf*j),y);
@@ -70,14 +70,18 @@ public class Explosion
         if(interagiert[index] && (x<150) && (x>-150) && (y<150) && (y>-150) ){
         explo[index].setzePosition(x,y,z);
         }else{
-        explo[index].setzePosition(500,500,z);
+        explo[index].setzePosition(0,0,z);
         }
     }
         
     public void hide(){
-        x=500;
-        y=500;
-        verschiebExplo(x,y);
+        x=0;
+        y=0;
+        explo[0].setzePosition(x,y,z);
+        richtung(1,x+40,y);
+        richtung(2,x,y+40);
+        richtung(3,x-40,y);
+        richtung(4,x,y-40); 
     }
     
     public void setinteragiertfalse(int index){

@@ -153,7 +153,7 @@ public class Spielfeld
         
         for(int i = 0; i != 3; i++){
             GLObjekt[] kugeln = explo2[i].getExplo();
-            for(int k = 1; k != 5; k++){
+            for(int k = 0; k != 5; k++){
                 int[] pos = this.findeSpieler(kugeln[k].gibX(), kugeln[k].gibY());
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo2[i].setinteragiertfalse(k);
@@ -162,10 +162,13 @@ public class Spielfeld
                         a[pos[0]][pos[1]].setContent(null);
                     }
                 }
-                if(this.findeSpieler(s1.getX(), s1.getY()) == pos){
+                int[] posS = this.findeSpieler(s1.getX(), s1.getY());
+                if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s1.setAlive(false);
+                    System.out.print(s1.getAlive());
                 }
-                if(this.findeSpieler(s2.getX(), s2.getY()) == pos){
+                posS = this.findeSpieler(s2.getX(), s2.getY());
+                if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s2.setAlive(false);
                 }
             }

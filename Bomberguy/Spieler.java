@@ -13,16 +13,16 @@ public class Spieler
     private Bombe[] bombs = new Bombe[5];
     private Explosion[] ep;
     private int Explosionlvl =4;
-    private boolean alive =true;
+    boolean alive;
     
-    public Spieler(String farbe ,int x, int y)
+    public Spieler(String farbe ,int x, int y, boolean palive)
     {
         ep= new Explosion[3];
         for(int i=0; i<3;++i){
         ep[i]= new Explosion();
         }
         spieler = new GLObjekt[9];
-
+        alive = palive;
         spieler[0] = new GLKugel(x,y,-8, 8,"weis.jpg" );
         spieler[1] = new GLKugel(x,y,-21, 6,"weis.jpg" );
         spieler[2] = new GLKugel(x,y,-29, 3,"weis.jpg" );

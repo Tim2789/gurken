@@ -36,8 +36,8 @@ public class Simulation
 
     public void sim(){
         if(spieler1 == spieler2){
-            spieler1 = new Spieler("grun.jpg",-140, -140);
-            spieler2 = new Spieler("rot.jpg",140, 140);
+            spieler1 = new Spieler("grun.jpg",-140, -140,true);
+            spieler2 = new Spieler("rot.jpg",140, 140,true);
         }
         while(tastatur.esc() != true){
             
@@ -97,16 +97,12 @@ public class Simulation
             if(bew2 == 5){
                 spieler2.setzebombe();
             }
-
-            if(tastatur.enter()){
-            }
-            if(tastatur.enter()){
-            
-            }
-            
-            if(!(spieler1.getAlive()) ){
+            System.out.println(spieler2.getAlive());
+            if(!(spieler1.getAlive())){
                 spieler1.setXY(-140, -140);
                 spieler1.setAlive(true);
+            }
+            if(!(spieler2.getAlive())){
                 spieler2.setXY(140, 140);
                 spieler2.setAlive(true);
             }
@@ -254,12 +250,12 @@ public class Simulation
         t.loesche();
         if(host == true){
             bs = new BomberServer();
-            spieler1 = new Spieler("grun.jpg",-140, -140);
-            spieler2 = new Spieler("rot.jpg",140, 140);
+            spieler1 = new Spieler("grun.jpg",-140, -140,true);
+            spieler2 = new Spieler("rot.jpg",140, 140,true);
         }
         else{
-            spieler1 = new Spieler("rot.jpg",140, 140);
-            spieler2 = new Spieler("grun.jpg",-140, -140);
+            spieler1 = new Spieler("rot.jpg",140, 140,true);
+            spieler2 = new Spieler("grun.jpg",-140, -140,true);
         }
         bc = new BomberClient(ip);
         this.sim();
