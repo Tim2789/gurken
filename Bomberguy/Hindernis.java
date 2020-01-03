@@ -21,7 +21,7 @@ public class Hindernis
     private void setTexture(boolean z){
         if(z == true){
             hindernis.setzeTextur("ziegel.jpg");
-        }else{hindernis.setzeTextur("steinziegel.jpg");}
+        }else if(z == false){hindernis.setzeTextur("steinziegel.jpg");}
     }
     public int getDistance(double spX, double spY){
 
@@ -51,5 +51,10 @@ public class Hindernis
     }
     public boolean destroyable(){
         return zerstörbar;
+    }
+    public boolean isBomb(){
+        if(hindernis != null){
+            return true;
+        }else return false;
     }
 }
