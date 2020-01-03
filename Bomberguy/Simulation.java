@@ -134,10 +134,11 @@ public class Simulation
                 sp1S++;
                 t.setzeText("Spieler 1 Score: " + sp1S, 10);
             }else spieler2.setAlive(true);
-			spieler1.entferneb();
+            
+            spieler1.entferneb(feld);
             spieler1.ablaufExplo();
             spieler1geschw=spieler1.getGes();
-            spieler2.entferneb();
+            spieler2.entferneb(feld);
             spieler2.ablaufExplo();
             spieler2geschw=spieler2.getGes();
             feld.testExplosion(spieler1,spieler2);

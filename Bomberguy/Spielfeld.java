@@ -221,7 +221,7 @@ public class Spielfeld
                 }
             }
         }
-
+    }
     public void setzeBombein(int x, int y){
         int[] bomb = this.findeSpieler(x ,y);
         a[bomb[0]][bomb[1]].setContent(new Hindernis(false, x, y)); 
