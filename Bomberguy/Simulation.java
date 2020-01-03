@@ -39,6 +39,8 @@ public class Simulation
             spieler1 = new Spieler("grun.jpg",-140, -140,true);
             spieler2 = new Spieler("rot.jpg",140, 140,true);
         }
+         double spieler1geschw = 1;
+         double spieler2geschw = 1;
         while(tastatur.esc() != true){
             
             double spX = spieler1.getX();
@@ -46,26 +48,27 @@ public class Simulation
             double sp2X = spieler2.getX();
             double sp2Y = spieler2.getY();
             int[] arraypos = feld.findeSpieler(spieler1.getX(), spieler1.getY());
+           
             //-----------------------------Spieler1--------------------------------------------------------
             int bew1 = this.spieler1Bewegung();
             if(bew1 == 3){
                 if(feld.getMax(4, spX, spY)-4 > spX){
-                    spieler1.movX(1);
+                    spieler1.movX(spieler1geschw);
                 }
             }
             if(bew1 == 4){
                 if(feld.getMax(3, spX, spY)+4 < spX){
-                    spieler1.movX(-1);
+                    spieler1.movX(-spieler1geschw);
                 }
             }
             if(bew1 == 1){
                 if(feld.getMax(1, spX, spY)-4 > spY){
-                    spieler1.movY(1);
+                    spieler1.movY(spieler1geschw);
                 }
             }
             if(bew1 == 2){
                 if(feld.getMax(2, spX, spY)+4 < spY){
-                    spieler1.movY(-1);
+                    spieler1.movY(-spieler1geschw);
                 }
             }
             if(bew1 == 5){
@@ -76,22 +79,22 @@ public class Simulation
             int bew2 = this.spieler2Bewegung();
             if(bew2 == 3){
                 if(feld.getMax(4, sp2X, sp2Y)-4 > sp2X){
-                    spieler2.movX(1);
+                    spieler2.movX(spieler2geschw);
                 }
             }
             if(bew2 == 4){
                 if(feld.getMax(3, sp2X, sp2Y)+4 < sp2X){
-                    spieler2.movX(-1);
+                    spieler2.movX(-spieler2geschw);
                 }
             }
             if(bew2 == 1){
                 if(feld.getMax(1, sp2X, sp2Y)-4 > sp2Y){
-                    spieler2.movY(1);
+                    spieler2.movY(spieler2geschw);
                 }
             }
             if(bew2 == 2){
                 if(feld.getMax(2, sp2X, sp2Y)+4 < sp2Y){
-                    spieler2.movY(-1);
+                    spieler2.movY(-spieler2geschw);
                 }
             }
             if(bew2 == 5){
@@ -108,9 +111,12 @@ public class Simulation
             }
             spieler1.entferneb();
             spieler1.ablaufExplo();
+            spieler1geschw=spieler1.getGes();
             spieler2.entferneb();
             spieler2.ablaufExplo();
+            spieler2geschw=spieler2.getGes();
             feld.testExplosion(spieler1,spieler2);
+            feld.findeitem(spieler1,spieler2);
             try {
                 Thread.currentThread().sleep(25);
             } catch (InterruptedException ie) {

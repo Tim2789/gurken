@@ -12,17 +12,13 @@ public class item
     /**
      * Constructor for objects of class item
      */
-    public item(int x, int y)
+   
+    
+    
+    public item(int x, int py,String a)
     {   
         getbomb= new GLObjekt[2];
-        getbomb[0]= new GLQuader(randpos(x),randpos(y),-8,8,8,8,"schwarz.jpg");
-    }
-    public double getRandom(double min, double max)
-    {
-        max = 150;
-        min = -150;
-        double xy = (Math.random()*((max-min)+1))+min;
-        return xy;
+        getbomb[0]= new GLQuader(randpos(x),randpos(py),-8,8,8,8, a);
     }
     public int randpos(int xy)
     {
@@ -39,6 +35,11 @@ public class item
         }
     }
     
+    public void removeitem()
+    {
+       getbomb[0].loesche();
+    }
+    
     public double getX(){
         return getbomb[0].gibX();
     }
@@ -52,9 +53,9 @@ public class item
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+   public int beispielMethode()
     {
-        // put your code here
-        return y;
+        // tragen Sie hier den Code ein
+        return 0 ;
     }
 }

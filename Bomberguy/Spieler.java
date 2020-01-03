@@ -8,12 +8,14 @@ import GLOOP.*;
 public class Spieler
 {
     private GLObjekt[] spieler ;
-    private int bombemax = 3;
+    private int bombemax = 1;
     private int bomben = 0 ;
     private Bombe[] bombs = new Bombe[5];
     private Explosion[] ep;
-    private int Explosionlvl =4;
+    private int Explosionlvl =1;
     boolean alive;
+    private double ges =1;
+    private int armor =0;
     
     public Spieler(String farbe ,int x, int y, boolean palive)
     {
@@ -54,14 +56,14 @@ public class Spieler
         return false;
     }
     
-    public void movX(int x){
+    public void movX(double x){
 
         for(int i = 0; i<8; i++){
             spieler[i].verschiebe(x,0,0);
         }
     }
 
-    public void movY(int y){
+    public void movY(double y){
         
         for(int i = 0; i<8; i++){
             spieler[i].verschiebe(0,y,0);
@@ -135,14 +137,30 @@ public class Spieler
     }
     
     public void setXY(int x , int y){
-    float temp ; 
-    for(int i = 0; i<8; i++){
-            temp=spieler[i].gibZ();
-            spieler[i].setzePosition(x,y,temp);
+        float temp ; 
+        for(int i = 0; i<8; i++){
+                temp=spieler[i].gibZ();
+                spieler[i].setzePosition(x,y,temp);
+            }
         }
     
+        
+    public void itemEffekt(int e){
+        switch(e){
+            case 0: break;
+            case 1: if(ges<2.5){ges=ges+0.5;}break;   
+            case 2: if(Explosionlvl <4){Explosionlvl++; } break;
+            case 3: if(bombemax<3){bombemax++;}break;
+            case 4: armor=1; break;
+        }
     }
     
+    public double getGes(){
+    return ges;
+    
+    }
+        
+        
     public void setAlive (boolean b){
     alive= b ;
     }

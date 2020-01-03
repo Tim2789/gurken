@@ -1,4 +1,5 @@
 import GLOOP.*;
+import java.util.Random;
 /**
  * Write a description of class Spielfeld here.
  *
@@ -14,6 +15,7 @@ public class Spielfeld
     private List<Hindernis> l, lZ;
     private GLHimmel h;
     private ArrayFeld[][] a;
+    private item[] items = new item[20];
     Spielfeld()
     {
         feld = new GLQuader(0,0,0,15*20,15*20,2);
@@ -27,6 +29,7 @@ public class Spielfeld
         lZ = new List<Hindernis>();
         this.setzeHindernisse();
         this.setzeHindernissezerstörbar();
+        //items[0]= new Speedup(140,120);
     }
 
     public void setzeHindernisse(){
@@ -71,6 +74,30 @@ public class Spielfeld
         }
         int[] ret = {feldX, feldY};
         return ret;
+    }
+    
+    public void findeitem(Spieler s1, Spieler s2)
+    {   
+        for(int i=0;i<items.length;i++){
+            if(items[i]!=null){
+            int[] posi =this.findeSpieler(items[i].getX(),items[i].getY());
+            int[] posS1 =this.findeSpieler(s1.getX(),s1.getY());
+            int[] posS2 =this.findeSpieler(s2.getX(),s2.getY());
+            if(posi[0] == posS1[0] && posi[1] == posS1[1] )
+            {
+                s1.itemEffekt(items[i].beispielMethode());
+                items[i].removeitem();
+                items[i] = null;
+            }
+            
+            if(posi[0] == posS2[0] && posi[1] == posS2[1] )
+            {
+                s2.itemEffekt(items[i].beispielMethode());
+                items[i].removeitem();
+                items[i] = null;
+            }
+        }
+        }
     }
 
     public double getMax(int d, double pX, double pY){
@@ -135,6 +162,7 @@ public class Spielfeld
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo1[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
+                        spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
                         a[pos[0]][pos[1]].getContent().loesche();
                         a[pos[0]][pos[1]].setContent(null);
                     }
@@ -158,6 +186,7 @@ public class Spielfeld
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo2[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
+                        spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
                         a[pos[0]][pos[1]].getContent().loesche();
                         a[pos[0]][pos[1]].setContent(null);
                     }
@@ -170,6 +199,27 @@ public class Spielfeld
                 posS = this.findeSpieler(s2.getX(), s2.getY());
                 if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s2.setAlive(false);
+                }
+            }
+        }
+    }
+    
+    public void spawnItem(int x, int y){
+        Random rand = new Random();
+        int n = rand.nextInt(4);
+        n++;
+        int m = rand.nextInt(100);
+        m++;
+        if(m<13){
+            for(int i = 0; i != 20; i++){
+                if(items[i] == null){
+                    switch(n){
+                        case 1: items[i] = new Speedup(x,y);  break;
+                        case 2: items[i] = new Rangeup(x,y); break;
+                        case 3: items[i] = new bombup(x,y); break;
+                        case 4: items[i] = new Armorup(x,y); break;
+                    }
+                    break;
                 }
             }
         }
