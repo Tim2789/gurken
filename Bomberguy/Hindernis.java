@@ -4,6 +4,7 @@ public class Hindernis
     private GLQuader hindernis;
     private boolean zerstörbar;
     private int x,y,z;
+    private boolean isgay =false;
     public Hindernis(boolean pZ, int px, int py)
     {
         zerstörbar = pZ;
@@ -11,6 +12,18 @@ public class Hindernis
         y = py;
         hindernis = new GLQuader(x,y,-10, 20, 20, 20);
         this.setTexture(zerstörbar);
+    }
+      public Hindernis(boolean pZ, int px, int py,boolean gay)
+    {
+        zerstörbar = pZ;
+        x = px;
+        y = py;
+        hindernis = new GLQuader(x,y,-10, 20, 20, 20);
+        this.setTexture(zerstörbar);
+        isgay=gay;
+    }
+    public boolean getgay(){
+    return isgay;
     }
     public int gibX(){
         return x;
@@ -22,6 +35,9 @@ public class Hindernis
         if(z == true){
             hindernis.setzeTextur("ziegel.jpg");
         }else if(z == false){hindernis.setzeTextur("steinziegel.jpg");}
+    }
+    public GLTextur getTextur(){
+        return hindernis.gibTextur();
     }
     public int getDistance(double spX, double spY){
 

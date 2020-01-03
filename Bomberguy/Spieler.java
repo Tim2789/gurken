@@ -36,13 +36,14 @@ public class Spieler
         spieler[7].setzeDrehung(90,0,0);
     }
        
-    public void setzebombe(){
+    public boolean setzebombe(){
         if(bomben <bombemax && !setzbar()){
             
             bombs[bomben] = new Bombe( (int)spieler[0].gibX() ,(int)spieler[0].gibY());
             erhoehebomben();
-           
+            return true;
         }
+        return false;
     }
     
     public boolean setzbar(){
@@ -150,8 +151,16 @@ public class Spieler
             case 1: if(ges<2.5){ges=ges+0.5;}break;   
             case 2: if(Explosionlvl <4){Explosionlvl++; } break;
             case 3: if(bombemax<3){bombemax++;}break;
-            case 4: armor=1; break;
+            case 4: armor=1; spieler[1].setzeTextur("hblau.jpg");   break;
         }
+    }
+    
+    public int getArmor(){
+    return armor;
+    }
+    public void setArmor(int a){
+    armor=a;
+    spieler[1].setzeTextur("weis.jpg");
     }
     
     public double getGes(){

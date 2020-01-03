@@ -30,8 +30,8 @@ public class Simulation
         tastatur = new GLTastatur();
         maus = new GLMaus();
         s = new Sys();
-        t = new GLTafel(210,30,0, 50, 70);
-        t1 = new GLTafel(210,-30,0, 50, 70);
+        t = new GLTafel(240,30,0, 90, 50);
+        t1 = new GLTafel(240,-30,0, 90, 50);
         t.setzeAutodrehung(true);
         t.setzeText("Spieler 1 Score: " + sp1S, 10);
         t1.setzeText("Spieler 2 Score: " + sp1S, 10);
@@ -86,8 +86,9 @@ public class Simulation
                 }
             }
             if(bew1 == 5){
-                spieler1.setzebombe();
-                feld.setzeBombein((int)spieler1.getX(), (int)spieler1.getY());
+                if(spieler1.setzebombe()){
+                    feld.setzeBombein((int)spieler1.getX(), (int)spieler1.getY());
+                }
             }
 
             //-----------------------------Spieler2--------------------------------------------------------
@@ -113,26 +114,38 @@ public class Simulation
                 }
             }
             if(bew2 == 5){
-                spieler2.setzebombe();
-                feld.setzeBombein((int)spieler2.getX(), (int)spieler2.getY());
+                if(spieler2.setzebombe()){
+                    feld.setzeBombein((int)spieler2.getX(), (int)spieler2.getY());
+                }
             }
             
             long dif = System.currentTimeMillis() - zeit;
             long dif1 = System.currentTimeMillis() - zeit1;
             
             if(!(spieler1.getAlive()) && dif > 3000){
-                spieler1.setXY(-140, -140);
-                spieler1.setAlive(true);
-                zeit = System.currentTimeMillis();
-                sp2S++;
-                t1.setzeText("Spieler 2 Score: " + sp2S, 10);
+                if(spieler1.getArmor()==1){
+                    zeit = System.currentTimeMillis();  
+                    spieler1.setArmor(0);  
+                }else{
+                    spieler1.setXY(-140, -140);
+                    spieler1.setAlive(true);
+                    zeit = System.currentTimeMillis();
+                    sp2S++;
+                    t1.setzeText("Spieler 2 Score: " + sp2S, 10);
+               }
             }else spieler1.setAlive(true);
             if(!(spieler2.getAlive()) && dif1 > 3000){
-                spieler2.setXY(140, 140);
-                spieler2.setAlive(true);
-                zeit1 = System.currentTimeMillis();
-                sp1S++;
-                t.setzeText("Spieler 1 Score: " + sp1S, 10);
+                 if(spieler2.getArmor()==1){
+                  zeit1 = System.currentTimeMillis();  
+                  spieler2.setArmor(0);  
+                }else{
+                
+                    spieler2.setXY(140, 140);
+                    spieler2.setAlive(true);
+                    zeit1 = System.currentTimeMillis();
+                    sp1S++;
+                    t.setzeText("Spieler 1 Score: " + sp1S, 10);
+                }   
             }else spieler2.setAlive(true);
             
             spieler1.entferneb(feld);

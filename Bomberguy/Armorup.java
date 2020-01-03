@@ -15,7 +15,7 @@ public class Armorup extends item
      */
     public Armorup(int x, int y)
     {
-        super(x,y,"gunpowder.jpg");
+        super(x,y,"dia.jpg");
         
         
     }

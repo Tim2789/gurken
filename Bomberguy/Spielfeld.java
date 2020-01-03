@@ -16,6 +16,7 @@ public class Spielfeld
     private GLHimmel h;
     private ArrayFeld[][] a;
     private item[] items = new item[20];
+    private GLQuader text = new GLQuader(120,120,-10, 10, 10, 10);
     Spielfeld()
     {
         feld = new GLQuader(0,0,0,15*20,15*20,2);
@@ -162,7 +163,9 @@ public class Spielfeld
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo1[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
-                        spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
+                        if(a[pos[0]][pos[1]].getContent().getgay()!= true){
+                            spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
+                        }    
                         a[pos[0]][pos[1]].getContent().loesche();
                         a[pos[0]][pos[1]].setContent(null);
                     }
@@ -185,7 +188,9 @@ public class Spielfeld
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo2[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
-                        spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
+                        if(a[pos[0]][pos[1]].getContent().getTextur() != null){
+                            spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
+                            }
                         a[pos[0]][pos[1]].getContent().loesche();
                         a[pos[0]][pos[1]].setContent(null);
                     }
@@ -208,7 +213,7 @@ public class Spielfeld
         n++;
         int m = rand.nextInt(100);
         m++;
-        if(m<13){
+        if(m<21){
             for(int i = 0; i != 20; i++){
                 if(items[i] == null){
                     switch(n){
@@ -224,7 +229,7 @@ public class Spielfeld
     }
     public void setzeBombein(int x, int y){
         int[] bomb = this.findeSpieler(x ,y);
-        a[bomb[0]][bomb[1]].setContent(new Hindernis(false, x, y)); 
+        a[bomb[0]][bomb[1]].setContent(new Hindernis(true, x, y,true)); 
         a[bomb[0]][bomb[1]].getContent().loesche();
     }
     
