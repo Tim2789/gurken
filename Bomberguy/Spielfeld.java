@@ -29,7 +29,6 @@ public class Spielfeld
         lZ = new List<Hindernis>();
         this.setzeHindernisse();
         this.setzeHindernissezerstörbar();
-        //items[0]= new Speedup(140,120);
     }
 
     public void setzeHindernisse(){
@@ -99,6 +98,7 @@ public class Spielfeld
         }
         }
     }
+
 
     public double getMax(int d, double pX, double pY){
         int[] posSpieler = findeSpieler(pX, pY);
@@ -170,7 +170,6 @@ public class Spielfeld
                 int[] posS = this.findeSpieler(s1.getX(), s1.getY());
                 if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s1.setAlive(false);
-                    System.out.print(s1.getAlive());
                 }
                 posS = this.findeSpieler(s2.getX(), s2.getY());
                 if(posS[0] == pos[0] && posS[1] == pos[1]){
@@ -194,7 +193,6 @@ public class Spielfeld
                 int[] posS = this.findeSpieler(s1.getX(), s1.getY());
                 if(posS[0] == pos[0] && posS[1] == pos[1]){
                     s1.setAlive(false);
-                    System.out.print(s1.getAlive());
                 }
                 posS = this.findeSpieler(s2.getX(), s2.getY());
                 if(posS[0] == pos[0] && posS[1] == pos[1]){
@@ -223,5 +221,16 @@ public class Spielfeld
                 }
             }
         }
+
+    public void setzeBombein(int x, int y){
+        int[] bomb = this.findeSpieler(x ,y);
+        a[bomb[0]][bomb[1]].setContent(new Hindernis(false, x, y)); 
+        a[bomb[0]][bomb[1]].getContent().loesche();
+    }
+    
+    public void loescheB(Bombe b){
+        int[] bomb = this.findeSpieler(b.getX(), b.getY());
+        a[bomb[0]][bomb[1]].setContent(null);
+
     }
 }

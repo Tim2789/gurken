@@ -1,4 +1,5 @@
-import GLOOP.*;
+
+    import GLOOP.*;
 /**
  * Write a description of class Simulation here.
  *
@@ -18,13 +19,23 @@ public class Simulation
     private boolean online, host;
     private BomberServer bs;
     private BomberClient bc;
-
+    private GLTafel t, t1;
+    private int sp1S, sp2S;
+    
     public Simulation()
     {
+        int sp1S = 0;
+        int sp2S = 0;
         feld = new Spielfeld();
         tastatur = new GLTastatur();
         maus = new GLMaus();
         s = new Sys();
+        t = new GLTafel(210,30,0, 50, 70);
+        t1 = new GLTafel(210,-30,0, 50, 70);
+        t.setzeAutodrehung(true);
+        t.setzeText("Spieler 1 Score: " + sp1S, 10);
+        t1.setzeText("Spieler 2 Score: " + sp1S, 10);
+        t1.setzeAutodrehung(true);
         //this.menu();
         this.sim();
     }
@@ -35,10 +46,13 @@ public class Simulation
     }
 
     public void sim(){
+        long zeit = System.currentTimeMillis();
+        long zeit1 = System.currentTimeMillis();
         if(spieler1 == spieler2){
             spieler1 = new Spieler("grun.jpg",-140, -140,true);
             spieler2 = new Spieler("rot.jpg",140, 140,true);
         }
+
          double spieler1geschw = 1;
          double spieler2geschw = 1;
         while(tastatur.esc() != true){
@@ -48,7 +62,6 @@ public class Simulation
             double sp2X = spieler2.getX();
             double sp2Y = spieler2.getY();
             int[] arraypos = feld.findeSpieler(spieler1.getX(), spieler1.getY());
-           
             //-----------------------------Spieler1--------------------------------------------------------
             int bew1 = this.spieler1Bewegung();
             if(bew1 == 3){
@@ -64,6 +77,7 @@ public class Simulation
             if(bew1 == 1){
                 if(feld.getMax(1, spX, spY)-4 > spY){
                     spieler1.movY(spieler1geschw);
+
                 }
             }
             if(bew1 == 2){
@@ -73,6 +87,7 @@ public class Simulation
             }
             if(bew1 == 5){
                 spieler1.setzebombe();
+                feld.setzeBombein((int)spieler1.getX(), (int)spieler1.getY());
             }
 
             //-----------------------------Spieler2--------------------------------------------------------
@@ -99,17 +114,27 @@ public class Simulation
             }
             if(bew2 == 5){
                 spieler2.setzebombe();
+                feld.setzeBombein((int)spieler2.getX(), (int)spieler2.getY());
             }
-            System.out.println(spieler2.getAlive());
-            if(!(spieler1.getAlive())){
+            
+            long dif = System.currentTimeMillis() - zeit;
+            long dif1 = System.currentTimeMillis() - zeit1;
+            
+            if(!(spieler1.getAlive()) && dif > 3000){
                 spieler1.setXY(-140, -140);
                 spieler1.setAlive(true);
-            }
-            if(!(spieler2.getAlive())){
+                zeit = System.currentTimeMillis();
+                sp2S++;
+                t1.setzeText("Spieler 2 Score: " + sp2S, 10);
+            }else spieler1.setAlive(true);
+            if(!(spieler2.getAlive()) && dif1 > 3000){
                 spieler2.setXY(140, 140);
                 spieler2.setAlive(true);
-            }
-            spieler1.entferneb();
+                zeit1 = System.currentTimeMillis();
+                sp1S++;
+                t.setzeText("Spieler 1 Score: " + sp1S, 10);
+            }else spieler2.setAlive(true);
+			spieler1.entferneb();
             spieler1.ablaufExplo();
             spieler1geschw=spieler1.getGes();
             spieler2.entferneb();

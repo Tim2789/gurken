@@ -70,16 +70,15 @@ public class Spieler
         }
     }
 
-    public void entferneb(){
+    public void entferneb(Spielfeld f){
         int i=0;
         int k=0;
         while(i < bomben){
         if ((System.currentTimeMillis() - bombs[i].getalter()) >=3000){
             anfangexplo(i);          
-            
+            f.loescheB(bombs[i]);
             bombs[i].loescheb();
             bombs[i]= null ;
-        
             for(int j =i; j<bomben; j++){
             bombs[j]=bombs[j+1];
             }
@@ -157,10 +156,8 @@ public class Spieler
     
     public double getGes(){
     return ges;
-    
     }
-        
-        
+	
     public void setAlive (boolean b){
     alive= b ;
     }
