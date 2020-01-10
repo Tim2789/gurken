@@ -188,7 +188,7 @@ public class Spielfeld
                 if(a[pos[0]][pos[1]].getContent() != null){
                     explo2[i].setinteragiertfalse(k);
                     if(a[pos[0]][pos[1]].getContent().destroyable() == true){
-                        if(a[pos[0]][pos[1]].getContent().getTextur() != null){
+                        if(a[pos[0]][pos[1]].getContent().getgay()!= true){
                             spawnItem(a[pos[0]][pos[1]].getContent().gibX(),a[pos[0]][pos[1]].getContent().gibY());
                             }
                         a[pos[0]][pos[1]].getContent().loesche();
